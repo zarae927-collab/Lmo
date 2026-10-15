@@ -1,0 +1,6 @@
+{
+  "name": "Golden Midnight - Interactive Birthday Surprise",
+  "description": "A luxury interactive multi-page birthday surprise experience with interactive memories, musical cassette player, secret letter, mini-game, and surprise room.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-bg-pink: #FFF5F7;
+    --color-surface-white: #FFFFFF;
+    --color-pink-soft: #FFE4EC;
+    --color-pink-card: #FFF8FA;
+    --color-pink-primary: #FF5A82;
+    --color-pink-deep: #D81B60;
+    --color-text-main: #2D121F;
+    --color-text-muted: #785263;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #FFF5F7;
+    color: #2D121F;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-serif-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+}
+
+.font-serif-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-script {
+  font-family: 'Great Vibes', cursive;
+}
+
+/* White and Pink luxury gradients */
+.text-pink-gradient {
+  background: linear-gradient(135deg, #FF4B72 0%, #E02868 50%, #B81D5B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-pink-gradient {
+  background: linear-gradient(135deg, #FF6584 0%, #FF3366 50%, #E02868 100%);
+}
+
+.bg-pink-soft-gradient {
+  background: linear-gradient(135deg, #FFF9FA 0%, #FFE4EC 100%);
+}
+
+.border-pink-subtle {
+  border-color: rgba(255, 182, 193, 0.45);
+}
+
+.pink-glow {
+  box-shadow: 0 4px 20px rgba(255, 105, 140, 0.15);
+}
+
+.pink-glow-lg {
+  box-shadow: 0 8px 30px rgba(255, 105, 140, 0.22);
+}
+
+/* Subtle animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1.5deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 5s ease-in-out 2s infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+/* Custom scrollbar in pink */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FFF5F7;
+}
+::-webkit-scrollbar-thumb {
+  background: #FFB3C6;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF7597;
+}
