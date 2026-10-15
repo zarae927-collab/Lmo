@@ -26,145 +26,146 @@ export const SurpriseObject: React.FC<SurpriseObjectProps> = ({
       }}
       className={`group relative cursor-pointer select-none transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 active:scale-95 focus:outline-none ${className}`}
     >
-      {/* Soft Pink Aura Glow on Hover */}
-      <div className="absolute -inset-4 bg-gradient-to-r from-pink-300/0 via-pink-400/25 to-pink-300/0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl pointer-events-none" />
+      {/* Soft Glow on Hover */}
+      <div className="absolute -inset-4 bg-pink-300/25 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl pointer-events-none" />
 
       {/* Unlocked checkmark badge */}
       {unlocked && (
-        <div className="absolute -top-2 -right-2 z-20 w-7 h-7 rounded-full bg-gradient-to-br from-pink-400 to-rose-500 text-white flex items-center justify-center font-bold text-xs shadow-md border-2 border-white">
+        <div className="absolute -top-2 -right-2 z-20 w-7 h-7 rounded-full bg-[#E63946] text-white flex items-center justify-center font-bold text-xs shadow-md border-2 border-white">
           ✓
         </div>
       )}
 
+      {/* 1. YELLOW RETRO POLAROID CAMERA (Exact yellow camera from reference video Frame 13) */}
       {type === 'camera' && (
         <div className="w-36 h-36 md:w-44 md:h-44 relative flex items-center justify-center">
-          <svg viewBox="0 0 160 160" className="w-full h-full drop-shadow-lg" fill="none">
-            {/* Vintage Polaroid Camera (Pastel yellow with pink touches) */}
-            <rect x="20" y="32" width="120" height="100" rx="20" fill="#FDE2E4" stroke="#FFB3C6" strokeWidth="2.5" />
-            <rect x="25" y="37" width="110" height="90" rx="16" fill="#FFF0F3" />
+          <svg viewBox="0 0 160 160" className="w-full h-full drop-shadow-md" fill="none">
+            {/* Camera Body - Bright Sunshine Yellow */}
+            <rect x="22" y="38" width="116" height="92" rx="22" fill="#FDD835" stroke="#F57F17" strokeWidth="2.5" />
+            <rect x="26" y="42" width="108" height="84" rx="18" fill="#FFEE58" />
 
-            {/* Top view finder bar */}
-            <path d="M 20 52 L 140 52" stroke="#FFB3C6" strokeWidth="2" />
-            <rect x="35" y="24" width="28" height="12" rx="4" fill="#FFCCD5" stroke="#FFB3C6" strokeWidth="1.5" />
-            <rect x="40" y="27" width="18" height="7" rx="2" fill="#2D121F" />
+            {/* Shutter Button (Black / Dark Grey) on top left */}
+            <rect x="36" y="30" width="18" height="9" rx="3" fill="#37474F" stroke="#263238" strokeWidth="1.5" />
 
-            {/* Flash Lamp */}
-            <circle cx="120" cy="44" r="8" fill="#FFFFFF" stroke="#FFB3C6" strokeWidth="2" />
-            <circle cx="120" cy="44" r="4" fill="#FF8BA7" />
+            {/* Flash / Sensor on top right */}
+            <rect x="106" y="46" width="18" height="12" rx="3" fill="#FFF9C4" stroke="#FBC02D" strokeWidth="1.5" />
+            <circle cx="115" cy="52" r="3.5" fill="#FDD835" />
 
-            {/* Shutter Button (Pink) */}
-            <rect x="30" y="42" width="12" height="6" rx="2" fill="#FF5A82" />
+            {/* Viewfinder window */}
+            <rect x="42" y="48" width="22" height="10" rx="3" fill="#37474F" />
+            <rect x="44" y="50" width="18" height="6" rx="2" fill="#78909C" />
 
-            {/* Main Center Lens with Rose Ring */}
-            <circle cx="80" cy="88" r="32" fill="#59203B" stroke="#FFB3C6" strokeWidth="3" />
-            <circle cx="80" cy="88" r="24" fill="#2D121F" stroke="#FF8BA7" strokeWidth="2" />
-            <circle cx="80" cy="88" r="14" fill="#3D1828" />
-            {/* Lens Reflection */}
-            <ellipse cx="74" cy="82" rx="6" ry="3" fill="#FFFFFF" opacity="0.7" transform="rotate(-30 74 82)" />
-            <circle cx="85" cy="94" r="2" fill="#FF8BA7" opacity="0.9" />
+            {/* Main Round Camera Lens with realistic depth rings */}
+            <circle cx="80" cy="90" r="32" fill="#424242" stroke="#212121" strokeWidth="3" />
+            <circle cx="80" cy="90" r="26" fill="#263238" stroke="#37474F" strokeWidth="1.5" />
+            <circle cx="80" cy="90" r="18" fill="#1A237E" />
+            <circle cx="80" cy="90" r="10" fill="#000000" />
+            
+            {/* Lens Glint / Light Reflection */}
+            <ellipse cx="73" cy="83" rx="7" ry="3.5" fill="#FFFFFF" opacity="0.75" transform="rotate(-35 73 83)" />
+            <circle cx="86" cy="96" r="2.5" fill="#90CAF9" opacity="0.8" />
 
-            {/* Photo Dispenser Slot at bottom */}
-            <rect x="45" y="124" width="70" height="4" rx="2" fill="#FFB3C6" />
-
-            {/* Cute mini heart badge */}
-            <circle cx="122" cy="112" r="8" fill="#FFFFFF" stroke="#FFB3C6" strokeWidth="1" />
-            <path d="M 122 110 C 122 108 125 108 125 110 C 125 112 122 114 122 114 C 122 114 119 112 119 110 C 119 108 122 108 122 110 Z" fill="#FF5A82" />
+            {/* Cute white heart accent */}
+            <circle cx="38" cy="98" r="4.5" fill="#FFFFFF" opacity="0.8" />
           </svg>
         </div>
       )}
 
+      {/* 2. LAVENDER / PURPLE ENVELOPE (Exact lavender open envelope from reference video Frame 13) */}
       {type === 'envelope' && (
         <div className="w-36 h-36 md:w-44 md:h-44 relative flex items-center justify-center">
-          <svg viewBox="0 0 160 160" className="w-full h-full drop-shadow-lg" fill="none">
-            {/* Lavender-Pink Luxury Sealed Envelope */}
-            <rect x="18" y="42" width="124" height="84" rx="12" fill="#FFF0F5" stroke="#FFB3C6" strokeWidth="2.5" />
-            <rect x="22" y="46" width="116" height="76" rx="8" fill="#FFE4EC" />
+          <svg viewBox="0 0 160 160" className="w-full h-full drop-shadow-md" fill="none">
+            {/* Open Envelope Flap in back */}
+            <polygon points="26,82 80,24 134,82" fill="#B39DDB" stroke="#9575CD" strokeWidth="2" />
 
-            {/* Bottom folds */}
-            <path d="M 18 126 L 80 86 L 142 126" fill="#FFCCD5" stroke="#FFB3C6" strokeWidth="2" />
+            {/* White Letter Card Peeking Out */}
+            <rect x="36" y="42" width="88" height="64" rx="4" fill="#FFFFFF" stroke="#EDE7F6" strokeWidth="1.5" />
+            {/* Letter Lines */}
+            <line x1="46" y1="54" x2="114" y2="54" stroke="#D1C4E9" strokeWidth="2" strokeLinecap="round" />
+            <line x1="46" y1="62" x2="98" y2="62" stroke="#D1C4E9" strokeWidth="2" strokeLinecap="round" />
 
-            {/* Top Flap */}
-            <path d="M 18 42 L 80 92 L 142 42 Z" fill="#FFF5F8" stroke="#FFB3C6" strokeWidth="2.5" />
+            {/* Main Envelope Body - Lavender Purple */}
+            <rect x="22" y="60" width="116" height="74" rx="8" fill="#9575CD" stroke="#7E57C2" strokeWidth="2" />
 
-            {/* Rose Wax Seal */}
-            <circle cx="80" cy="92" r="15" fill="#FF5A82" stroke="#D81B60" strokeWidth="2" />
-            <circle cx="80" cy="92" r="11" fill="#FF7597" />
-            {/* Wax seal heart icon */}
-            <path d="M 80 90 C 80 88 83.5 88 83.5 90 C 83.5 92.5 80 95 80 95 C 80 95 76.5 92.5 76.5 90 C 76.5 88 80 88 80 90 Z" fill="#FFFFFF" />
+            {/* Envelope Front Folds */}
+            <polygon points="22,134 80,92 138,134" fill="#7E57C2" stroke="#673AB7" strokeWidth="1.5" />
+            <polygon points="22,60 80,102 22,134" fill="#8561C5" />
+            <polygon points="138,60 80,102 138,134" fill="#8561C5" />
 
-            {/* Floating sparkle hearts */}
-            <path d="M 32 30 L 33 34 L 37 35 L 33 36 L 32 40 L 31 36 L 27 35 L 31 34 Z" fill="#FF8BA7" />
-            <path d="M 134 32 L 135 35 L 138 36 L 135 37 L 134 40 L 133 37 L 130 36 L 133 35 Z" fill="#FF8BA7" />
+            {/* Pink Heart Seal at center */}
+            <g transform="translate(80, 94)">
+              <path
+                d="M 0 -2 C 0 -6 6 -6 6 -2 C 6 2 0 6 0 6 C 0 6 -6 2 -6 -2 C -6 -6 0 -6 0 -2 Z"
+                fill="#FF4081"
+                stroke="#F50057"
+                strokeWidth="1"
+              />
+            </g>
           </svg>
         </div>
       )}
 
+      {/* 3. RETRO CASSETTE TAPE (Exact black and beige cassette with spools from reference video Frame 13) */}
       {type === 'cassette' && (
         <div className="w-36 h-36 md:w-44 md:h-44 relative flex items-center justify-center">
-          <svg viewBox="0 0 160 160" className="w-full h-full drop-shadow-lg" fill="none">
-            {/* Retro Pastel Pink Cassette Tape */}
-            <rect x="16" y="44" width="128" height="80" rx="10" fill="#FFF0F5" stroke="#FFB3C6" strokeWidth="2.5" />
-            <rect x="22" y="50" width="116" height="68" rx="6" fill="#FFE4EC" />
+          <svg viewBox="0 0 160 160" className="w-full h-full drop-shadow-md" fill="none">
+            {/* Cassette Shell - Vintage Dark Charcoal/Black with rounded corners */}
+            <rect x="18" y="44" width="124" height="74" rx="8" fill="#212121" stroke="#424242" strokeWidth="2" />
 
-            {/* Label area (pure white with rose border) */}
-            <rect x="28" y="56" width="104" height="42" rx="5" fill="#FFFFFF" stroke="#FFB3C6" strokeWidth="1.5" />
+            {/* Screws in 4 corners */}
+            <circle cx="25" cy="51" r="2" fill="#9E9E9E" />
+            <circle cx="135" cy="51" r="2" fill="#9E9E9E" />
+            <circle cx="25" cy="111" r="2" fill="#9E9E9E" />
+            <circle cx="135" cy="111" r="2" fill="#9E9E9E" />
 
-            {/* Label Text "HAAREYA <3" */}
-            <text x="80" y="66" textAnchor="middle" fill="#E02868" fontSize="8" fontWeight="bold" fontFamily="sans-serif">
-              HAAREYA &lt;3
-            </text>
+            {/* Center Beige / Warm Cream Label */}
+            <rect x="30" y="54" width="100" height="46" rx="5" fill="#D7CCC8" stroke="#BCAAA4" strokeWidth="1" />
 
-            {/* Tape Window with spools */}
-            <rect x="42" y="70" width="76" height="22" rx="4" fill="#FFF5F8" stroke="#FFB3C6" strokeWidth="1" />
-            {/* Left Spool */}
-            <circle cx="56" cy="81" r="7" fill="#FFFFFF" stroke="#FF8BA7" strokeWidth="1.5" />
-            <circle cx="56" cy="81" r="3" fill="#FF5A82" />
-            <line x1="56" y1="74" x2="56" y2="88" stroke="#FF8BA7" strokeWidth="1" />
-            <line x1="49" y1="81" x2="63" y2="81" stroke="#FF8BA7" strokeWidth="1" />
+            {/* Tape Window / Spool Cutout */}
+            <rect x="44" y="64" width="72" height="26" rx="4" fill="#212121" />
 
-            {/* Right Spool */}
-            <circle cx="104" cy="81" r="7" fill="#FFFFFF" stroke="#FF8BA7" strokeWidth="1.5" />
-            <circle cx="104" cy="81" r="3" fill="#FF5A82" />
-            <line x1="104" y1="74" x2="104" y2="88" stroke="#FF8BA7" strokeWidth="1" />
-            <line x1="97" y1="81" x2="111" y2="81" stroke="#FF8BA7" strokeWidth="1" />
+            {/* Left Tape Spool */}
+            <circle cx="60" cy="77" r="9" fill="#EEEEEE" stroke="#9E9E9E" strokeWidth="1.5" />
+            <circle cx="60" cy="77" r="4.5" fill="#212121" />
+            {/* Left Spool Teeth */}
+            <line x1="60" y1="70" x2="60" y2="84" stroke="#212121" strokeWidth="1.5" />
+            <line x1="53" y1="77" x2="67" y2="77" stroke="#212121" strokeWidth="1.5" />
 
-            {/* Tape ribbon between spools */}
-            <line x1="63" y1="81" x2="97" y2="81" stroke="#FF8BA7" strokeWidth="3" />
+            {/* Center Tape Window Glass */}
+            <rect x="74" y="70" width="12" height="14" rx="1" fill="#424242" />
 
-            {/* Bottom trapezoid base with holes */}
-            <polygon points="36,124 44,106 116,106 124,124" fill="#FFE4EC" stroke="#FFB3C6" strokeWidth="1.5" />
-            <circle cx="54" cy="115" r="3" fill="#FFFFFF" />
-            <circle cx="106" cy="115" r="3" fill="#FFFFFF" />
-            <rect x="70" y="112" width="20" height="6" rx="2" fill="#FFFFFF" />
+            {/* Right Tape Spool */}
+            <circle cx="100" cy="77" r="9" fill="#EEEEEE" stroke="#9E9E9E" strokeWidth="1.5" />
+            <circle cx="100" cy="77" r="4.5" fill="#212121" />
+            {/* Right Spool Teeth */}
+            <line x1="100" y1="70" x2="100" y2="84" stroke="#212121" strokeWidth="1.5" />
+            <line x1="93" y1="77" x2="107" y2="77" stroke="#212121" strokeWidth="1.5" />
+
+            {/* Bottom Trapezoid Tape Guide */}
+            <polygon points="40,118 48,104 112,104 120,118" fill="#1B1B1B" stroke="#424242" strokeWidth="1" />
+            <circle cx="56" cy="111" r="2.5" fill="#424242" />
+            <circle cx="104" cy="111" r="2.5" fill="#424242" />
+
+            {/* Mini Cute Heart on label */}
+            <g transform="translate(122, 60)">
+              <path
+                d="M 0 0 C 0 -2 3 -2 3 0 C 3 2 0 3.5 0 3.5 C 0 3.5 -3 2 -3 0 C -3 -2 0 -2 0 0 Z"
+                fill="#FF4081"
+              />
+            </g>
           </svg>
         </div>
       )}
 
+      {/* 4. BONUS GIFT BOX */}
       {type === 'gift' && (
         <div className="w-36 h-36 md:w-44 md:h-44 relative flex items-center justify-center">
-          <svg viewBox="0 0 160 160" className="w-full h-full drop-shadow-lg" fill="none">
-            {/* Sweet White & Pink Gift Box */}
-            <rect x="28" y="58" width="104" height="74" rx="10" fill="#FFF0F5" stroke="#FFB3C6" strokeWidth="2.5" />
-            {/* Box Lid */}
-            <rect x="22" y="46" width="116" height="20" rx="8" fill="#FFE4EC" stroke="#FFB3C6" strokeWidth="2.5" />
-
-            {/* Vertical Rose Ribbon */}
-            <rect x="73" y="46" width="14" height="86" fill="#FF5A82" />
-            {/* Horizontal Rose Ribbon */}
-            <rect x="28" y="86" width="104" height="14" fill="#FF5A82" />
-
-            {/* Satin Pink Bow on top */}
-            <path d="M 80 46 C 60 22 45 42 74 46 Z" fill="#FF7597" stroke="#FF5A82" strokeWidth="1.5" />
-            <path d="M 80 46 C 100 22 115 42 86 46 Z" fill="#FF7597" stroke="#FF5A82" strokeWidth="1.5" />
-            <circle cx="80" cy="46" r="6" fill="#FF5A82" stroke="#FFFFFF" strokeWidth="2" />
-
-            {/* Hanging Ribbon Tails */}
-            <path d="M 76 48 Q 66 65 58 72" stroke="#FF5A82" strokeWidth="3" strokeLinecap="round" />
-            <path d="M 84 48 Q 94 65 102 72" stroke="#FF5A82" strokeWidth="3" strokeLinecap="round" />
-
-            {/* Sparkles */}
-            <path d="M 28 36 L 29 39 L 32 40 L 29 41 L 28 44 L 27 41 L 24 40 L 27 39 Z" fill="#FF8BA7" />
-            <path d="M 135 44 L 136 47 L 139 48 L 136 49 L 135 52 L 134 49 L 131 48 L 134 47 Z" fill="#FF8BA7" />
+          <svg viewBox="0 0 160 160" className="w-full h-full drop-shadow-md" fill="none">
+            {/* Cute Gift Box */}
+            <rect x="36" y="58" width="88" height="66" rx="10" fill="#FFF0F5" stroke="#FF80AB" strokeWidth="2.5" />
+            <rect x="30" y="46" width="100" height="18" rx="6" fill="#FF80AB" />
+            <rect x="74" y="46" width="12" height="78" fill="#FF4081" />
+            <circle cx="80" cy="42" r="8" fill="#FF4081" />
           </svg>
         </div>
       )}

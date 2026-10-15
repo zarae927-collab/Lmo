@@ -67,17 +67,19 @@ export const MiniGamePage: React.FC<MiniGamePageProps> = ({
   };
 
   return (
-    <div className="relative z-10 max-w-4xl mx-auto px-4 py-8 md:py-12">
+    <div className="relative z-10 min-h-[calc(100vh-4rem)] bg-candy-stripes flex flex-col justify-center px-4 py-8">
+      {/* Side Star Stickers */}
+      <div className="absolute top-10 left-6 text-[#FFD166] text-3xl select-none">★</div>
+      <div className="absolute bottom-16 left-8 text-[#FF8BA7] text-3xl select-none">★</div>
+      <div className="absolute top-10 right-6 text-[#FF8BA7] text-3xl select-none">★</div>
+      <div className="absolute bottom-16 right-8 text-[#FFD166] text-3xl select-none">★</div>
+
       {/* Header */}
-      <div className="text-center space-y-3 mb-8">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-pink-200 bg-white/80 text-xs tracking-widest text-pink-600 uppercase font-cinzel font-semibold shadow-sm">
-          <Sparkles className="w-3.5 h-3.5 text-pink-500" />
-          <span>Page 6 of 7 · The Birthday Quiz</span>
-        </div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif-title font-medium text-[#2D121F] tracking-tight">
+      <div className="text-center space-y-2 mb-8">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bubble font-bold text-[#FF5A82] tracking-tight">
           {quiz.heading}
         </h2>
-        <p className="text-sm sm:text-base text-slate-600 max-w-xl mx-auto font-light">
+        <p className="text-sm sm:text-base font-cute text-slate-600 max-w-xl mx-auto font-medium">
           {quiz.subheading}
         </p>
       </div>

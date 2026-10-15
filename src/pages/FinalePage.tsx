@@ -73,28 +73,21 @@ export const FinalePage: React.FC<FinalePageProps> = ({
   };
 
   return (
-    <div className="relative z-10 max-w-5xl mx-auto px-4 py-8 md:py-12 text-center">
-      {/* Grand Top Badge */}
-      <div className="space-y-4 mb-8">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-pink-200 bg-white/80 text-xs tracking-[0.2em] text-pink-600 uppercase font-cinzel font-bold shadow-sm">
-          <Sparkles className="w-3.5 h-3.5 text-pink-500" />
-          <span>Page 7 of 7 · The Grand Finale</span>
-        </div>
+    <div className="relative z-10 min-h-[calc(100vh-4rem)] bg-candy-stripes flex flex-col justify-center px-4 py-8 text-center">
+      {/* Side Star Stickers */}
+      <div className="absolute top-10 left-6 text-[#FFD166] text-3xl select-none">★</div>
+      <div className="absolute bottom-16 left-8 text-[#FF8BA7] text-3xl select-none">★</div>
+      <div className="absolute top-10 right-6 text-[#FF8BA7] text-3xl select-none">★</div>
+      <div className="absolute bottom-16 right-8 text-[#FFD166] text-3xl select-none">★</div>
 
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-serif-title font-medium text-[#2D121F] tracking-tight leading-tight">
-          {finale.heading}
+      {/* Grand Top Heading matching "happy Birthday" */}
+      <div className="space-y-3 mb-6">
+        <h1 className="font-script text-6xl sm:text-7xl md:text-8xl text-[#FF5A82] tracking-wide drop-shadow-sm">
+          {finale.heading || 'happy Birthday'}
         </h1>
-        <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-light leading-relaxed">
+        <p className="font-cute text-sm sm:text-base text-slate-600 max-w-xl mx-auto font-medium">
           {finale.subheading}
         </p>
-
-        {countdownText && (
-          <div className="pt-2">
-            <span className="inline-block px-4 py-1 rounded-full bg-pink-50 border border-pink-200 text-xs text-pink-700 font-cinzel font-semibold shadow-xs">
-              ⏳ {countdownText}
-            </span>
-          </div>
-        )}
       </div>
 
       {/* INTERACTIVE CAKE & CANDLE SECTION (Pink & White Aesthetic) */}

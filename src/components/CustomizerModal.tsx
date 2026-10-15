@@ -24,6 +24,7 @@ interface CustomizerModalProps {
   onClose: () => void;
   data: BirthdayState;
   onSaveData: (newData: BirthdayState) => void;
+  initialTab?: 'global' | 'gateway' | 'gallery' | 'letter' | 'music' | 'hub' | 'quiz' | 'finale' | 'backup';
 }
 
 export const CustomizerModal: React.FC<CustomizerModalProps> = ({
@@ -31,26 +32,45 @@ export const CustomizerModal: React.FC<CustomizerModalProps> = ({
   onClose,
   data,
   onSaveData,
+  initialTab = 'global',
 }) => {
   const [formData, setFormData] = useState<BirthdayState>(data);
-  const [activeTab, setActiveTab] = useState<'global' | 'gateway' | 'gallery' | 'letter' | 'music' | 'hub' | 'quiz' | 'finale' | 'backup'>('global');
+  const [activeTab, setActiveTab] = useState<'global' | 'gateway' | 'gallery' | 'letter' | 'music' | 'hub' | 'quiz' | 'finale' | 'backup'>(initialTab);
   const [saveToast, setSaveToast] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<{ text: string; isError?: boolean } | null>(null);
+  const [confirmResetOpen, setConfirmResetOpen] = useState(false);
+
+  // Sync formData when data prop changes or modal opens
+  React.useEffect(() => {
+    if (isOpen) {
+      setFormData(data);
+      if (initialTab) {
+        setActiveTab(initialTab);
+      }
+    }
+  }, [isOpen, data, initialTab]);
 
   if (!isOpen) return null;
+
+  const showStatus = (text: string, isError = false) => {
+    setStatusMessage({ text, isError });
+    setTimeout(() => setStatusMessage(null), 3000);
+  };
 
   const handleSave = () => {
     saveStoredBirthdayData(formData);
     onSaveData(formData);
     setSaveToast(true);
+    showStatus('Saved all customizations successfully!');
     setTimeout(() => setSaveToast(false), 2500);
   };
 
   const handleReset = () => {
-    if (window.confirm('Reset all website customizations back to default template?')) {
-      setFormData(INITIAL_BIRTHDAY_DATA);
-      saveStoredBirthdayData(INITIAL_BIRTHDAY_DATA);
-      onSaveData(INITIAL_BIRTHDAY_DATA);
-    }
+    setFormData(INITIAL_BIRTHDAY_DATA);
+    saveStoredBirthdayData(INITIAL_BIRTHDAY_DATA);
+    onSaveData(INITIAL_BIRTHDAY_DATA);
+    setConfirmResetOpen(false);
+    showStatus('Reset all settings to default template!');
   };
 
   const handleExportJSON = () => {
@@ -62,6 +82,7 @@ export const CustomizerModal: React.FC<CustomizerModalProps> = ({
     a.download = `birthday-surprise-${formData.global.recipientName.toLowerCase() || 'config'}.json`;
     a.click();
     URL.revokeObjectURL(url);
+    showStatus('Exported birthday config JSON file!');
   };
 
   const handleImportJSON = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,9 +95,9 @@ export const CustomizerModal: React.FC<CustomizerModalProps> = ({
         setFormData(parsed);
         saveStoredBirthdayData(parsed);
         onSaveData(parsed);
-        alert('Configuration imported successfully!');
-      } catch (err) {
-        alert('Invalid JSON file format.');
+        showStatus('Configuration imported successfully!');
+      } catch {
+        showStatus('Invalid JSON file format. Please check file.', true);
       }
     };
     reader.readAsText(file);
@@ -151,6 +172,46 @@ export const CustomizerModal: React.FC<CustomizerModalProps> = ({
             </button>
           </div>
         </div>
+
+        {/* Status Toast / Notification Bar */}
+        {statusMessage && (
+          <div
+            className={`px-6 py-2 text-xs font-semibold flex items-center justify-between border-b ${
+              statusMessage.isError
+                ? 'bg-rose-100 text-rose-800 border-rose-200'
+                : 'bg-emerald-100 text-emerald-800 border-emerald-200'
+            }`}
+          >
+            <span>{statusMessage.text}</span>
+            <button
+              onClick={() => setStatusMessage(null)}
+              className="text-xs opacity-70 hover:opacity-100"
+            >
+              ✕
+            </button>
+          </div>
+        )}
+
+        {/* Reset Confirmation Prompt */}
+        {confirmResetOpen && (
+          <div className="px-6 py-3 bg-amber-50 border-b border-amber-200 text-amber-900 text-xs flex items-center justify-between gap-4">
+            <span>Are you sure you want to reset all customizations back to default template?</span>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleReset}
+                className="px-3 py-1 rounded-lg bg-rose-500 text-white font-bold hover:bg-rose-600"
+              >
+                Yes, Reset
+              </button>
+              <button
+                onClick={() => setConfirmResetOpen(false)}
+                className="px-3 py-1 rounded-lg bg-amber-200 text-amber-900 font-medium hover:bg-amber-300"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Tab Navigation Strip */}
         <div className="px-6 py-2.5 bg-pink-50/40 border-b border-pink-200 flex items-center gap-1.5 overflow-x-auto shrink-0 scrollbar-none">
@@ -808,8 +869,8 @@ export const CustomizerModal: React.FC<CustomizerModalProps> = ({
                   Reset everything back to the initial template state.
                 </p>
                 <button
-                  onClick={handleReset}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-rose-500 hover:bg-rose-600 text-white text-xs font-semibold shadow-xs transition-colors"
+                  onClick={() => setConfirmResetOpen(true)}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-rose-500 hover:bg-rose-600 text-white text-xs font-semibold shadow-xs transition-colors cursor-pointer"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   <span>Reset All to Defaults</span>

@@ -28,12 +28,29 @@
   font-family: 'Cormorant Garamond', Georgia, serif;
 }
 
+.font-bubble {
+  font-family: 'Fredoka', 'Comfortaa', cursive, sans-serif;
+}
+
+.font-cute {
+  font-family: 'Comfortaa', 'Fredoka', cursive, sans-serif;
+}
+
 .font-cinzel {
   font-family: 'Cinzel', serif;
 }
 
 .font-script {
-  font-family: 'Great Vibes', cursive;
+  font-family: 'Dancing Script', 'Great Vibes', cursive;
+}
+
+/* Authentic reference video pastel candy stripes background */
+.bg-candy-stripes {
+  background: repeating-linear-gradient(90deg, #EDF4FA 0px, #EDF4FA 38px, #FFFFFF 38px, #FFFFFF 76px);
+}
+
+.bg-heart-cloud {
+  background: radial-gradient(circle at center, #FFE8EE 0%, #FFF5F7 60%, #FFF0F4 100%);
 }
 
 /* White and Pink luxury gradients */

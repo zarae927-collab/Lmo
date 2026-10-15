@@ -12,6 +12,7 @@ import {
 import { GoldenStarsBackground } from './components/GoldenStarsBackground';
 import { TopNavbar } from './components/TopNavbar';
 import { CustomizerModal } from './components/CustomizerModal';
+import { Sliders } from 'lucide-react';
 
 // 7 Distinct Pages
 import { GatewayPage } from './pages/GatewayPage';
@@ -26,6 +27,7 @@ export default function App() {
   const [data, setData] = useState<BirthdayState>(loadStoredBirthdayData);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isCustomizerOpen, setIsCustomizerOpen] = useState<boolean>(false);
+  const [customizerTab, setCustomizerTab] = useState<'global' | 'gateway' | 'gallery' | 'letter' | 'music' | 'hub' | 'quiz' | 'finale' | 'backup'>('global');
 
   // Sync title with recipient
   useEffect(() => {
@@ -50,6 +52,11 @@ export default function App() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentPage]);
+
+  const handleOpenCustomizer = (tab: 'global' | 'gateway' | 'gallery' | 'letter' | 'music' | 'hub' | 'quiz' | 'finale' | 'backup' = 'global') => {
+    setCustomizerTab(tab);
+    setIsCustomizerOpen(true);
+  };
 
   const handleUpdateGallery = (updatedGallery: BirthdayState['gallery']) => {
     const updated = { ...data, gallery: updatedGallery };
@@ -81,11 +88,11 @@ export default function App() {
           setCurrentPage(p);
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
-        onOpenCustomizer={() => setIsCustomizerOpen(true)}
+        onOpenCustomizer={() => handleOpenCustomizer('global')}
       />
 
       {/* Main Experience Viewport */}
-      <main className="flex-1 relative z-10">
+      <main className="flex-1 relative z-10 pb-16">
         {currentPage === 1 && (
           <GatewayPage
             data={data}
@@ -97,6 +104,7 @@ export default function App() {
               setCurrentPage(p);
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
+            onOpenCustomizer={handleOpenCustomizer}
           />
         )}
 
@@ -109,9 +117,10 @@ export default function App() {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             onNavigatePrev={() => {
-              setCurrentPage(1);
+              setCurrentPage(5);
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
+            onOpenCustomizer={handleOpenCustomizer}
           />
         )}
 
@@ -123,9 +132,10 @@ export default function App() {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             onNavigatePrev={() => {
-              setCurrentPage(2);
+              setCurrentPage(5);
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
+            onOpenCustomizer={handleOpenCustomizer}
           />
         )}
 
@@ -138,9 +148,10 @@ export default function App() {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             onNavigatePrev={() => {
-              setCurrentPage(3);
+              setCurrentPage(5);
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
+            onOpenCustomizer={handleOpenCustomizer}
           />
         )}
 
@@ -156,9 +167,10 @@ export default function App() {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             onNavigatePrev={() => {
-              setCurrentPage(4);
+              setCurrentPage(1);
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
+            onOpenCustomizer={handleOpenCustomizer}
           />
         )}
 
@@ -201,7 +213,7 @@ export default function App() {
                 setCurrentPage(page);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className={`h-2.5 rounded-full transition-all ${
+              className={`h-2.5 rounded-full transition-all cursor-pointer ${
                 currentPage === page
                   ? 'w-6 bg-gradient-to-r from-pink-500 to-rose-400'
                   : 'w-2.5 bg-pink-100 hover:bg-pink-300'
@@ -212,12 +224,25 @@ export default function App() {
         </div>
       </div>
 
+      {/* Always-Visible Floating Customize Option */}
+      <div className="fixed bottom-4 right-4 z-30">
+        <button
+          onClick={() => handleOpenCustomizer('global')}
+          className="px-4 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 text-white font-bubble text-xs sm:text-sm font-bold shadow-xl shadow-pink-300/60 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 border-2 border-white/90 cursor-pointer"
+          title="Customize Recipient, Message, Photos & Music"
+        >
+          <Sliders className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          <span>Customize</span>
+        </button>
+      </div>
+
       {/* Customization Drawer / Modal */}
       <CustomizerModal
         isOpen={isCustomizerOpen}
         onClose={() => setIsCustomizerOpen(false)}
         data={data}
         onSaveData={handleSaveData}
+        initialTab={customizerTab}
       />
     </div>
   );
